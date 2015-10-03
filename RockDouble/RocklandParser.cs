@@ -11,8 +11,6 @@ namespace RockDouble
         public List<Song> GetSongs(HtmlAgilityPack.HtmlDocument html)
         {
             var playlistTable = html.DocumentNode.SelectNodes(GetPlaylistXPath(html));
-            //var playlistTable = html.DocumentNode.SelectNodes("/html[1]/body[1]/content[1]/div[2]/table[1]/tbody[1]/tr[1]/td[2]/table[1]/tbody[1]/tr[1]/td[1]/div[1]/div[1]/table[1]/tbody[1]");
-            //var playlistTable = html.DocumentNode.SelectNodes("/html/body/content/form/div/table/tbody/tr/td[2]/table/tbody/tr/td/div[1]/div[1]/table/tbody");
             List<Song> songs = new List<Song>();
             foreach (HtmlAgilityPack.HtmlNode node in playlistTable.First().ChildNodes)
             {
@@ -31,16 +29,22 @@ namespace RockDouble
             return songs;
         }
 
-        public string GetPlaylistXPath(HtmlAgilityPack.HtmlDocument html)
+        private string GetPlaylistXPath(HtmlAgilityPack.HtmlDocument html)
         {
             var nodes = html.DocumentNode.Descendants();
+            for (int i = GetPlaylistNodeID(nodes); i < nodes.Count(); i++)
+                if (nodes.ElementAt(i).OriginalName.Equals("TABLE") ||
+                    nodes.ElementAt(i).Name.Equals("tbody") /* tbody = for offline test */)
+                    return nodes.ElementAt(i).XPath;
+            throw new ArgumentException("Playlist XPath not found");
+        }
+
+        private int GetPlaylistNodeID(IEnumerable<HtmlAgilityPack.HtmlNode> nodes)
+        {
             for (int i = nodes.Count() - 1; i > 0; i--)
                 if (nodes.ElementAt(i).InnerText.Contains("Aktuelle Titelliste"))
-                    for (int j = i; j < nodes.Count(); j++)
-                        if (nodes.ElementAt(j).OriginalName.Equals("TABLE") ||
-                            nodes.ElementAt(j).Name.Equals("tbody") /* tbody = for offline test */)
-                            return nodes.ElementAt(j).XPath;
-            throw new ArgumentException("Playlist XPath not found");
+                    return i;
+            throw new ArgumentException("Playlist Node ID not found");
         }
 
         int GetSongStartIndex(HtmlAgilityPack.HtmlNodeCollection song)
