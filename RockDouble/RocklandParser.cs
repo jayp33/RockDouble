@@ -8,6 +8,13 @@ namespace RockDouble
 {
     class RocklandParser
     {
+        public List<Song> GetSongs(Uri url)
+        {
+            var htmlWeb = new HtmlAgilityPack.HtmlWeb();
+            var html = htmlWeb.Load(url.ToString());
+            return GetSongs(html);
+        }
+
         public List<Song> GetSongs(HtmlAgilityPack.HtmlDocument html)
         {
             var playlistTable = html.DocumentNode.SelectNodes(GetPlaylistXPath(html));
