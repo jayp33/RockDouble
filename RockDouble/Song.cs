@@ -10,11 +10,12 @@ namespace RockDouble
     {
         public string Artist { get; set; }
         public string Title { get; set; }
-        public string Timestamp { get; set; }
+        public string TimestampText { get; set; }
+        public DateTime Timestamp { get; set; }
 
         public override string ToString()
         {
-            return Timestamp + " " + Artist + " - " + Title;
+            return TimestampText + " " + Artist + " - " + Title;
         }
     }
 }

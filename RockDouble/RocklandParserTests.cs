@@ -61,7 +61,7 @@ namespace RockDouble
             Assert.IsTrue(songs.Count > 0);
             foreach (var song in songs)
             {
-                Assert.IsTrue(song.Timestamp.EndsWith("Uhr"));
+                Assert.IsTrue(song.TimestampText.EndsWith("Uhr"));
             }
         }
     }
