@@ -28,12 +28,44 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.listBoxSongs = new System.Windows.Forms.ListBox();
+            this.buttonStart = new System.Windows.Forms.Button();
+            this.SuspendLayout();
+            // 
+            // listBoxSongs
+            // 
+            this.listBoxSongs.FormattingEnabled = true;
+            this.listBoxSongs.Location = new System.Drawing.Point(12, 12);
+            this.listBoxSongs.Name = "listBoxSongs";
+            this.listBoxSongs.Size = new System.Drawing.Size(260, 199);
+            this.listBoxSongs.TabIndex = 0;
+            // 
+            // buttonStart
+            // 
+            this.buttonStart.Location = new System.Drawing.Point(12, 227);
+            this.buttonStart.Name = "buttonStart";
+            this.buttonStart.Size = new System.Drawing.Size(260, 23);
+            this.buttonStart.TabIndex = 1;
+            this.buttonStart.Text = "Find RockDoubles";
+            this.buttonStart.UseVisualStyleBackColor = true;
+            // 
+            // Form1
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "Form1";
+            this.ClientSize = new System.Drawing.Size(284, 262);
+            this.Controls.Add(this.buttonStart);
+            this.Controls.Add(this.listBoxSongs);
+            this.Name = "Form1";
+            this.Text = "Rockland FM";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private System.Windows.Forms.ListBox listBoxSongs;
+        private System.Windows.Forms.Button buttonStart;
     }
 }
 
