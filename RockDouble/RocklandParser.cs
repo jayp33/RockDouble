@@ -33,8 +33,6 @@ namespace RockDouble
                 if (!songs.Contains(song))
                     songs.Add(song);
             }
-            if (songs.Count == 0)
-                throw new ArgumentException("No songs found");
             return songs;
         }
 

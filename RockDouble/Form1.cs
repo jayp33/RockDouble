@@ -43,6 +43,8 @@ namespace RockDouble
         {
             var rockland = new RocklandParser();
             var songs = rockland.GetSongs(new Uri("http://www.rockland.fm/start.php?playlist"));
+            if (songs.Count == 0)
+                return;
             if (listBoxSongs.Items[0].Equals("Loading songs..."))
                 listBoxSongs.Items.Clear();
             songs.Sort();
