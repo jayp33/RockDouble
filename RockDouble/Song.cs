@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RockDouble
 {
-    class Song
+    class Song : IEquatable<Song>
     {
         public string Artist { get; set; }
         public string Title { get; set; }
@@ -16,6 +16,11 @@ namespace RockDouble
         public override string ToString()
         {
             return TimestampText + " " + Artist + " - " + Title;
+        }
+
+        public bool Equals(Song other)
+        {
+            return Timestamp.Equals(other.Timestamp);
         }
     }
 }

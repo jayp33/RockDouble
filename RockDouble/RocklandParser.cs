@@ -23,7 +23,8 @@ namespace RockDouble
                 song.Timestamp = GetDateTime(html, song.TimestampText);
                 song.Artist = subNodes.Last().ChildNodes.ElementAt(startIndex + 2).InnerText;
                 song.Title = subNodes.Last().ChildNodes.ElementAt(startIndex + 4).InnerText;
-                songs.Add(song);
+                if (!songs.Contains(song))
+                    songs.Add(song);
             }
             if (songs.Count == 0)
                 throw new ArgumentException("No songs found");
