@@ -12,6 +12,7 @@ namespace RockDouble
         public string Title { get; set; }
         public string TimestampText { get; set; }
         public DateTime Timestamp { get; set; }
+        public bool Added { get; set; }
 
         public override string ToString()
         {

@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.listBoxSongs = new System.Windows.Forms.ListBox();
             this.buttonStart = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // listBoxSongs
@@ -48,6 +50,12 @@
             this.buttonStart.TabIndex = 1;
             this.buttonStart.Text = "Find RockDoubles";
             this.buttonStart.UseVisualStyleBackColor = true;
+            this.buttonStart.Click += new System.EventHandler(this.buttonStart_Click);
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 20000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // Form1
             // 
@@ -66,6 +74,7 @@
 
         private System.Windows.Forms.ListBox listBoxSongs;
         private System.Windows.Forms.Button buttonStart;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 
