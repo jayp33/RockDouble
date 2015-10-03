@@ -11,8 +11,13 @@ namespace RockDouble
     public class MyTestClass
     {
         [TestMethod]
-        public void MyTestMethod()
+        public void RocklandWebsiteShouldContainROCKLAND_offline()
         {
+            var html = new HtmlAgilityPack.HtmlDocument();
+            var path = System.IO.Path.GetDirectoryName(
+                System.Reflection.Assembly.GetExecutingAssembly().Location) + @"\..\..\TestData";
+            html.Load(path + @"\ROCKLAND - Mach an und laut!.html");
+            Assert.IsTrue(html.DocumentNode.ChildNodes["html"].InnerText.Contains("ROCKLAND"));
         }
     }
 }
