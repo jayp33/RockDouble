@@ -12,9 +12,11 @@ namespace RockDouble
 {
     public partial class Form1 : Form
     {
+        Color m_originalColor;
         public Form1()
         {
             InitializeComponent();
+            m_originalColor = this.BackColor;
         }
 
         List<Song> m_songs = new List<Song>();
@@ -57,6 +59,30 @@ namespace RockDouble
                     m_song.Added = true;
                 }
             }
+            if (CheckForRockDouble())
+            {
+                this.BackColor = Color.Red;
+                listBoxSongs.Items.Add("*** RockDouble found ***");
+            }
+        }
+
+        private bool CheckForRockDouble()
+        {
+            if (m_songs.Last().Artist.Equals(m_songs.ElementAt(m_songs.Count - 2).Artist))
+                return true;
+            return false;
+            //else
+            //{
+            //    string message = m_songs.ElementAt(m_songs.Count - 2).Artist + " <> " + m_songs.Last().Artist;
+            //    if (!listBoxSongs.Items.Contains(message))
+            //        listBoxSongs.Items.Add(message);
+            //    return false;
+            //}
+        }
+
+        private void Form1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            this.BackColor = m_originalColor;
         }
     }
 }

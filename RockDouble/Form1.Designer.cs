@@ -66,6 +66,7 @@
             this.Controls.Add(this.listBoxSongs);
             this.Name = "Form1";
             this.Text = "Rockland FM";
+            this.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDoubleClick);
             this.ResumeLayout(false);
 
         }
