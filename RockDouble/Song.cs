@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RockDouble
 {
-    class Song : IEquatable<Song>
+    class Song : IEquatable<Song>, IComparable
     {
         public string Artist { get; set; }
         public string Title { get; set; }
@@ -21,6 +21,11 @@ namespace RockDouble
         public bool Equals(Song other)
         {
             return Timestamp.Equals(other.Timestamp);
+        }
+
+        public int CompareTo(object obj)
+        {
+            return Timestamp.CompareTo(((Song)obj).Timestamp);
         }
     }
 }

@@ -28,5 +28,19 @@ namespace RockDouble
                 songs.Add(songDuplicate);
             Assert.AreEqual(8, songs.Count);
         }
+
+        [TestMethod]
+        public void SongsCanBeSortedByTimestamp()
+        {
+            var html = new HtmlAgilityPack.HtmlDocument();
+            var path = System.IO.Path.GetDirectoryName(
+                System.Reflection.Assembly.GetExecutingAssembly().Location) + @"\..\..\TestData";
+            html.Load(path + @"\ROCKLAND - Mach an und laut!.html");
+            var parser = new RocklandParser();
+            var songs = parser.GetSongs(html);
+            Assert.AreEqual("Russ Ballard", songs.First().Artist);
+            songs.Sort();
+            Assert.AreEqual("Russ Ballard", songs.Last().Artist);
+        }
     }
 }
