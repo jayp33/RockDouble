@@ -13,10 +13,13 @@ namespace RockDouble
     public partial class Form1 : Form
     {
         Color m_originalColor;
+        int defaultInterval;
         public Form1()
         {
             InitializeComponent();
             m_originalColor = this.BackColor;
+            defaultInterval = timer1.Interval;
+            textBoxInterval.Text = (timer1.Interval / 1000).ToString();
         }
 
         List<Song> m_songs = new List<Song>();
@@ -29,6 +32,12 @@ namespace RockDouble
                 listBoxSongs.Items.Add("Loading songs...");
                 Application.DoEvents();
                 m_songs = new List<Song>();
+                int interval = 0;
+                if (Int32.TryParse(textBoxInterval.Text, out interval))
+                    interval *= 1000;
+                else
+                    interval = defaultInterval;
+                timer1.Interval = interval;
                 timer1.Start();
                 timer1_Tick(null, null);
             }
