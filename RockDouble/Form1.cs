@@ -74,6 +74,8 @@ namespace RockDouble
             if (CheckForRockDouble())
             {
                 this.BackColor = Color.Red;
+                this.WindowState = FormWindowState.Normal;
+                this.Activate();
                 string message = "*** RockDouble found ***";
                 if (!listBoxSongs.Items[0].Equals(message))
                     listBoxSongs.Items.Insert(0, message);
