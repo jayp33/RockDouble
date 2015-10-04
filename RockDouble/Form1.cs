@@ -30,13 +30,16 @@ namespace RockDouble
                 buttonStart.Text = "Anhalten";
                 listBoxSongs.Items.Clear();
                 listBoxSongs.Items.Add("Loading songs...");
-                Application.DoEvents();
                 m_songs = new List<Song>();
                 int interval = 0;
                 if (Int32.TryParse(textBoxInterval.Text, out interval))
                     interval *= 1000;
                 else
+                {
+                    textBoxInterval.Text = (defaultInterval / 1000).ToString();
                     interval = defaultInterval;
+                }
+                Application.DoEvents();
                 timer1.Interval = interval;
                 timer1.Start();
                 timer1_Tick(null, null);
