@@ -44,6 +44,7 @@ namespace RockDouble
             else
             {
                 buttonStart.Text = "Find RockDoubles";
+                this.BackColor = m_originalColor;
                 timer1.Stop();
             }
         }
