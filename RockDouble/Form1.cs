@@ -82,13 +82,6 @@ namespace RockDouble
             if (m_songs.Last().Artist.Equals(m_songs.ElementAt(m_songs.Count - 2).Artist))
                 return true;
             return false;
-            //else
-            //{
-            //    string message = m_songs.ElementAt(m_songs.Count - 2).Artist + " <> " + m_songs.Last().Artist;
-            //    if (!listBoxSongs.Items.Contains(message))
-            //        listBoxSongs.Items.Add(message);
-            //    return false;
-            //}
         }
 
         private void Form1_MouseDoubleClick(object sender, MouseEventArgs e)
