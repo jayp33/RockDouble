@@ -66,14 +66,14 @@ namespace RockDouble
             {
                 if (!m_song.Added)
                 {
-                    listBoxSongs.Items.Add(m_song);
+                    listBoxSongs.Items.Insert(0, m_song);
                     m_song.Added = true;
                 }
             }
             if (CheckForRockDouble())
             {
                 this.BackColor = Color.Red;
-                listBoxSongs.Items.Add("*** RockDouble found ***");
+                listBoxSongs.Items.Insert(0, "*** RockDouble found ***");
             }
         }
 
