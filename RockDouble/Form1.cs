@@ -13,11 +13,13 @@ namespace RockDouble
     public partial class Form1 : Form
     {
         Color m_originalColor;
+        Color m_intervalOriginalColor;
         int defaultInterval;
         public Form1()
         {
             InitializeComponent();
             m_originalColor = this.BackColor;
+            m_intervalOriginalColor = textBoxInterval.BackColor;
             defaultInterval = timer1.Interval;
             textBoxInterval.Text = (timer1.Interval / 1000).ToString();
         }
@@ -48,12 +50,15 @@ namespace RockDouble
             {
                 buttonStart.Text = "Find RockDoubles";
                 this.BackColor = m_originalColor;
+                textBoxInterval.BackColor = m_intervalOriginalColor;
                 timer1.Stop();
             }
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            textBoxInterval.BackColor = Color.Yellow;
+            Application.DoEvents();
             var rockland = new RocklandParser();
             var songs = rockland.GetSongs(new Uri("http://www.rockland.fm/start.php?playlist"));
             if (songs.Count == 0)
@@ -83,6 +88,7 @@ namespace RockDouble
                 if (!listBoxSongs.Items[0].Equals(message))
                     listBoxSongs.Items.Insert(0, message);
             }
+            textBoxInterval.BackColor = m_intervalOriginalColor;
         }
 
         private bool CheckForRockDouble()
