@@ -93,7 +93,8 @@ namespace RockDouble
 
         private bool CheckForRockDouble()
         {
-            if (m_songs.Last().Artist.ToLower().Equals(m_songs.ElementAt(m_songs.Count - 2).Artist.ToLower()))
+            if (m_songs.Last().Artist.ToLower().Equals(m_songs.ElementAt(m_songs.Count - 2).Artist.ToLower()) &&
+                (!m_songs.Last().Title.Equals(m_songs.ElementAt(m_songs.Count - 2).Title)))
                 return true;
             return false;
         }
